@@ -29,7 +29,7 @@ export class LoginFormComponent {
   }
 
   registerForm() {
-    this.loginForm.markAllAsTouched();
+    //this.loginForm.markAllAsTouched();
     //if(this.loginForm.valid){
     this.route.navigateByUrl('contact-information');
     //}

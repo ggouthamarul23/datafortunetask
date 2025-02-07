@@ -22,22 +22,6 @@ export class ContactInformationComponent implements OnInit {
     });
   }
 
-  mustMatchData(data: any, confirmationData: any) {
-    return (formGroup: FormGroup) => {
-      const dataControl = formGroup.controls[data];
-      const confirmDataControl = formGroup.controls[confirmationData];
-      if (dataControl.errors && !dataControl.errors['Mustmatch']) {
-        return;
-      }
-
-      if (dataControl.value !== confirmDataControl.value) {
-        confirmDataControl.setErrors({ MustMatch: true });
-      } else {
-        confirmDataControl.setErrors({ MustMatch: null });
-      }
-    };
-  }
-
   registrationData() {
     if (this.contactInformation.invalid) {
       // Mark all form controls as touched to show validation messages
@@ -47,7 +31,6 @@ export class ContactInformationComponent implements OnInit {
       return;
     }
 
-    // Handle valid form submission logic here
     console.log('Form Submitted', this.contactInformation.value);
     this.route.navigateByUrl('complete');
   }

@@ -1,0 +1,116 @@
+<style>
+  .invalid-feedback {
+    color: #a93a44; /* Error message color */
+  }
+
+  .is-invalid {
+    border-color: #a93a44 !important; /* Red border for invalid inputs */
+  }
+</style>
+<div class="contact-information pb-5 middle-information">
+  <nav class="my-5 bg-light-blue d-inline-block w-100">
+    <div class="container">
+      <div class="row">
+        <div class="p-2 font-22 text-white text-center">
+          CONTACT INFORMATION
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <ul class="d-flex justify-content-between processing-data p-0 m-auto">
+    <li class="col p-0 d-inline-block text-center position-relative active"><span
+        class="process-count m-auto bg-white text-dark-blue font-16
+        d-inline-block">1</span> <span class="d-inline-block w-100
+        text-dark-blue
+        font-14 mt-1 font-weight-medium">REGISTER</span></li>
+    <li class="col p-0 d-inline-block text-center position-relative active"><span
+        class="process-count m-auto bg-white text-dark-blue font-16
+        d-inline-block">2</span> <span class="d-inline-block w-100
+        text-dark-blue
+        font-14 mt-1 font-weight-medium">SUBMIT INFO</span></li>
+    <li class="col p-0 d-inline-block text-center position-relative"><span
+        class="process-count m-auto bg-white text-dark-blue font-16
+        d-inline-block">3</span> <span class="d-inline-block w-100
+        text-dark-blue
+        font-14 mt-1 font-weight-medium">COMPLETE</span></li>
+  </ul>
+
+ 
+  
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col">
+        <div class="p-4 mx-form-xl m-auto bg-white border-dark-gray rounded-10">
+          <div class="mb-3 font-16 font-weight-medium text-light-gray">Please fill in the following required information</div>
+          <form [formGroup]="contactInformation" (ngSubmit)="registrationData()">
+            <!-- First Name -->
+            <div class="form-wrapper font-20 font-semi-bold mb-3">
+              <label class="mb-1 font-weight-bold font-16 text-dark-gray w-100">First Name:*</label>
+              <input type="text" class="form-control" formControlName="firstName" [ngClass]="{'is-invalid': contactInformation.get('firstName')?.touched && contactInformation.get('firstName')?.invalid}">
+              <div *ngIf="contactInformation.get('firstName')?.touched && contactInformation.get('firstName')?.invalid" class="invalid-feedback d-block">
+                <div *ngIf="contactInformation.get('firstName')?.errors?.['required']">First Name is required.</div>
+              </div>
+            </div>
+  
+            <!-- Last Name -->
+            <div class="form-wrapper font-20 font-semi-bold mb-3">
+              <label class="mb-1 font-weight-bold font-16 text-dark-gray w-100">Last Name:*</label>
+              <input type="text" class="form-control" formControlName="lastName" [ngClass]="{'is-invalid': contactInformation.get('lastName')?.touched && contactInformation.get('lastName')?.invalid}">
+              <div *ngIf="contactInformation.get('lastName')?.touched && contactInformation.get('lastName')?.invalid" class="invalid-feedback d-block">
+                <div *ngIf="contactInformation.get('lastName')?.errors?.['required']">Last Name is required.</div>
+              </div>
+            </div>
+  
+            <!-- State -->
+            <div class="form-wrapper font-20 font-semi-bold mb-3">
+              <label class="mb-1 font-weight-bold font-16 text-dark-gray w-100">State:*</label>
+              <select class="form-select" formControlName="state" [ngClass]="{'is-invalid': contactInformation.get('state')?.touched && contactInformation.get('state')?.invalid}">
+                <option selected>select State</option>
+                <option value="1">Tamilnadu</option>
+                <option value="2">Maharastra</option>
+                <option value="3">Andhra</option>
+              </select>
+              <div *ngIf="contactInformation.get('state')?.touched && contactInformation.get('state')?.invalid" class="invalid-feedback d-block">
+                <div *ngIf="contactInformation.get('state')?.errors?.['required']">State is required.</div>
+              </div>
+            </div>
+  
+            <!-- Email -->
+            <div class="form-wrapper font-20 font-semi-bold mb-3">
+              <label class="mb-1 font-weight-bold font-16 text-dark-gray w-100">Email:*</label>
+              <input type="text" class="form-control" formControlName="email" [ngClass]="{'is-invalid': contactInformation.get('email')?.touched && contactInformation.get('email')?.invalid}">
+              <div *ngIf="contactInformation.get('email')?.touched && contactInformation.get('email')?.invalid" class="invalid-feedback d-block">
+                <div *ngIf="contactInformation.get('email')?.errors?.['required']">Email is required.</div>
+                <div *ngIf="contactInformation.get('email')?.errors?.['email']">Please enter a valid email address.</div>
+              </div>
+            </div>
+  
+            <!-- Confirm Email -->
+            <div class="form-wrapper font-20 font-semi-bold mb-3">
+              <label class="mb-1 font-weight-bold font-16 text-dark-gray w-100">Confirm Email:*</label>
+              <input type="text" class="form-control" formControlName="confirmemail" [ngClass]="{'is-invalid': contactInformation.get('confirmemail')?.touched && contactInformation.get('confirmemail')?.invalid}">
+              <div *ngIf="contactInformation.get('confirmemail')?.touched && contactInformation.get('confirmemail')?.invalid" class="invalid-feedback d-block">
+                <div *ngIf="contactInformation.get('confirmemail')?.errors?.['required']">Confirm Email is required.</div>
+                <div *ngIf="contactInformation.get('confirmemail')?.errors?.['email']">Please enter a valid email address.</div>
+              </div>
+            </div>
+  
+            <!-- Subscribe to Newsletter -->
+            <div class="font-semi-bold">
+              <input type="checkbox" class="font-semi-bold me-1" formControlName="subscribe">
+              <label class="font-weight-bold font-16 text-dark-gray">Subscribe to Newsletter</label>
+            </div>
+  
+            <!-- Submit Button -->
+            <div class="d-flex justify-content-end">
+              <button type="submit" class="btn px-3 py-2" style="background-color: #1b5875; color: white;">Continue</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+</div>
